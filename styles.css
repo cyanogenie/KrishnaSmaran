@@ -1,0 +1,68 @@
+.fullscreen-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    background-color: #1e1e1e;
+    overflow: hidden;
+  }
+  
+  .text-content {
+    font-size: 3em; /* Default font size for larger screens */
+    color: gold;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+    max-width: 80%;
+    word-wrap: break-word;
+    white-space: pre-line;
+  }
+  
+  .control-container {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+  }
+  
+  .play-pause-button {
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+  }
+  .play-pause-button:hover {
+      background-color: #555;
+  }
+  
+  /* Media Query for smaller screens (e.g., phones) */
+  @media (max-width: 768px) {
+    .text-content {
+      font-size: 2em; /* Reduced font size for smaller screens */
+       max-width: 90%;
+    }
+    .play-pause-button{
+         font-size: 0.9em;
+         padding: 8px 16px;
+    }
+    .control-container{
+          bottom: 10px; /* Lower button a bit for smaller screens */
+    }
+  }
+  
+  
+  /* Media Query for very small screens (e.g., older phones) */
+  @media (max-width: 480px) {
+    .text-content {
+      font-size: 1.5em; /* Further reduced font size for very small screens */
+    }
+     .play-pause-button{
+         font-size: 0.8em;
+         padding: 6px 12px;
+    }
+  }
