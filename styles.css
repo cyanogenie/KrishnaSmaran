@@ -4,6 +4,7 @@ html, body {
   padding: 0;
   overflow: hidden;
 }
+
 .fullscreen-container {
   display: flex;
   justify-content: center;
@@ -13,8 +14,9 @@ html, body {
   background-color: #1e1e1e;
   overflow: hidden;
 }
+
 .text-content {
-  font-size: 3em; /* Default font size for larger screens */
+  font-size: 3em;
   color: gold;
   text-align: center;
   padding: 20px;
@@ -22,7 +24,10 @@ html, body {
   max-width: 80%;
   word-wrap: break-word;
   white-space: pre-line;
+    overflow-y: auto; /* Add vertical scroll */
+  max-height: 80vh; /* Set a max height so the scrollbar activates when exceeded */
 }
+
 .control-container {
   position: fixed;
   bottom: 20px;
@@ -32,6 +37,7 @@ html, body {
   display: flex;
   align-items: center;
 }
+
 .play-pause-button {
   background-color: #333;
   color: white;
@@ -41,10 +47,13 @@ html, body {
   cursor: pointer;
   font-size: 1em;
   margin: 0 10px;
+    margin-bottom: 10px;  /* Add bottom margin to play/pause button */
 }
+
 .play-pause-button:hover {
     background-color: #555;
 }
+
 .nav-button{
    background-color: #333;
   color: white;
@@ -54,43 +63,56 @@ html, body {
   cursor: pointer;
   font-size: 1.2em;
     margin: 0 10px;
+      margin-bottom: 10px; /* Add bottom margin to navigation buttons */
 }
+
 .nav-button:hover{
   background-color: #555;
 }
+
 /* Media Query for smaller screens (e.g., phones) */
 @media (max-width: 768px) {
   .text-content {
-    font-size: 2em; /* Reduced font size for smaller screens */
-     max-width: 90%;
+    font-size: 2em;
+    max-width: 90%;
+    max-height: 70vh;
   }
+
   .play-pause-button{
        font-size: 0.9em;
        padding: 8px 16px;
         margin: 0 8px;
+           margin-bottom: 8px;  /* Add bottom margin to play/pause button */
   }
-  .nav-button{
+
+   .nav-button{
         font-size: 1.0em;
         padding: 8px 13px;
          margin: 0 8px;
+          margin-bottom: 8px; /* Add bottom margin to navigation buttons */
   }
-    .control-container{
-        bottom: 10px; /* Lower button a bit for smaller screens */
-    }
+  .control-container{
+      bottom: 10px;
+  }
 }
+
 /* Media Query for very small screens (e.g., older phones) */
 @media (max-width: 480px) {
   .text-content {
-    font-size: 1.5em; /* Further reduced font size for very small screens */
+    font-size: 1.5em;
+      max-height: 60vh;
   }
-   .play-pause-button{
+
+    .play-pause-button{
        font-size: 0.8em;
        padding: 6px 12px;
         margin: 0 6px;
+           margin-bottom: 6px; /* Add bottom margin to play/pause button */
   }
-    .nav-button{
+   .nav-button{
         font-size: 0.9em;
         padding: 6px 10px;
         margin: 0 6px;
+          margin-bottom: 6px;/* Add bottom margin to navigation buttons */
   }
 }
