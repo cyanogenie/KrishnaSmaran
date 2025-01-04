@@ -1,61 +1,83 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const textDisplay = document.getElementById('text-display');
-    const playPauseButton = document.getElementById('play-pause-button');
-    let texts = [];
-    let currentTextIndex = -1;
-    let timerInterval = null;
-    let isPlaying = true;
-  
-    function updateText() {
-      if(texts.length > 0){
+  const textDisplay = document.getElementById('text-display');
+  const playPauseButton = document.getElementById('play-pause-button');
+  const prevButton = document.getElementById('prev-button');
+  const nextButton = document.getElementById('next-button');
+  let texts = [];
+  let currentTextIndex = -1;
+  let timerInterval = null;
+  let isPlaying = true;
+
+function updateText(direction) {
+    if(texts.length > 0){
+        if (direction === 'next') {
+           currentTextIndex = (currentTextIndex + 1) % texts.length;
+       } else if (direction === 'prev') {
+            currentTextIndex = (currentTextIndex - 1 + texts.length) % texts.length;
+         }
+      else {
           let randomIndex = currentTextIndex;
           while (randomIndex === currentTextIndex) {
               randomIndex = Math.floor(Math.random() * texts.length);
-          }
-         currentTextIndex = randomIndex;
+           }
+           currentTextIndex = randomIndex;
+        }
+
           textDisplay.textContent = texts[currentTextIndex].quote;
       }
-    }
-      function startTimer() {
-        timerInterval = setInterval(updateText, 30000);
-        playPauseButton.textContent = "Pause";
-        isPlaying = true;
-    }
-  
-    function stopTimer() {
-        clearInterval(timerInterval);
-        playPauseButton.textContent = "Play";
-        isPlaying = false;
-    }
-  
-    function togglePlayPause() {
+}
+
+
+  function startTimer() {
+      timerInterval = setInterval(() => updateText("next"), 30000);
+      playPauseButton.textContent = "Pause";
+      isPlaying = true;
+  }
+
+  function stopTimer() {
+      clearInterval(timerInterval);
+      playPauseButton.textContent = "Play";
+      isPlaying = false;
+  }
+
+  function togglePlayPause() {
       if (isPlaying) {
-         stopTimer();
+          stopTimer();
       } else {
-        startTimer();
+          startTimer();
       }
-    }
-  
-  
-    function loadTextsFromJSON() {
+  }
+
+   function loadTextsFromJSON() {
       fetch('quotes.json')
-        .then(response => response.json())
-        .then(data => {
-          if (Array.isArray(data)) {
-            texts = data;
-            updateText();
-             startTimer(); // Start timer initially
-          } else {
-            console.error('Invalid JSON format: Array of objects expected');
-            textDisplay.textContent = 'Invalid JSON Format';
-          }
-        })
-        .catch(error => {
-          console.error('Error loading JSON:', error);
-          textDisplay.textContent = 'Error loading texts';
-        });
-    }
-  
-     playPauseButton.addEventListener('click', togglePlayPause);
-    loadTextsFromJSON();
+          .then(response => response.json())
+          .then(data => {
+              if (Array.isArray(data)) {
+                  texts = data;
+                  updateText();
+                   startTimer();
+              } else {
+                  console.error('Invalid JSON format: Array of objects expected');
+                  textDisplay.textContent = 'Invalid JSON Format';
+              }
+          })
+          .catch(error => {
+              console.error('Error loading JSON:', error);
+              textDisplay.textContent = 'Error loading texts';
+          });
+  }
+
+
+   prevButton.addEventListener('click', () => {
+      // stopTimer();
+      updateText('prev');
   });
+
+  nextButton.addEventListener('click', () => {
+      // stopTimer();
+      updateText('next');
+  });
+  playPauseButton.addEventListener('click', togglePlayPause);
+
+  loadTextsFromJSON();
+});

@@ -1,68 +1,96 @@
+/* Reset some default styles */
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
 .fullscreen-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    width: 100vw;
-    background-color: #1e1e1e;
-    overflow: hidden;
-  }
-  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  background-color: #1e1e1e;
+  overflow: hidden;
+}
+.text-content {
+  font-size: 3em; /* Default font size for larger screens */
+  color: gold;
+  text-align: center;
+  padding: 20px;
+  box-sizing: border-box;
+  max-width: 80%;
+  word-wrap: break-word;
+  white-space: pre-line;
+}
+.control-container {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+}
+.play-pause-button {
+  background-color: #333;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  margin: 0 10px;
+}
+.play-pause-button:hover {
+    background-color: #555;
+}
+.nav-button{
+   background-color: #333;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.2em;
+    margin: 0 10px;
+}
+.nav-button:hover{
+  background-color: #555;
+}
+/* Media Query for smaller screens (e.g., phones) */
+@media (max-width: 768px) {
   .text-content {
-    font-size: 3em; /* Default font size for larger screens */
-    color: gold;
-    text-align: center;
-    padding: 20px;
-    box-sizing: border-box;
-    max-width: 80%;
-    word-wrap: break-word;
-    white-space: pre-line;
+    font-size: 2em; /* Reduced font size for smaller screens */
+     max-width: 90%;
   }
-  
-  .control-container {
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 10;
+  .play-pause-button{
+       font-size: 0.9em;
+       padding: 8px 16px;
+        margin: 0 8px;
   }
-  
-  .play-pause-button {
-    background-color: #333;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1em;
+  .nav-button{
+        font-size: 1.0em;
+        padding: 8px 13px;
+         margin: 0 8px;
   }
-  .play-pause-button:hover {
-      background-color: #555;
-  }
-  
-  /* Media Query for smaller screens (e.g., phones) */
-  @media (max-width: 768px) {
-    .text-content {
-      font-size: 2em; /* Reduced font size for smaller screens */
-       max-width: 90%;
-    }
-    .play-pause-button{
-         font-size: 0.9em;
-         padding: 8px 16px;
-    }
     .control-container{
-          bottom: 10px; /* Lower button a bit for smaller screens */
+        bottom: 10px; /* Lower button a bit for smaller screens */
     }
+}
+/* Media Query for very small screens (e.g., older phones) */
+@media (max-width: 480px) {
+  .text-content {
+    font-size: 1.5em; /* Further reduced font size for very small screens */
   }
-  
-  
-  /* Media Query for very small screens (e.g., older phones) */
-  @media (max-width: 480px) {
-    .text-content {
-      font-size: 1.5em; /* Further reduced font size for very small screens */
-    }
-     .play-pause-button{
-         font-size: 0.8em;
-         padding: 6px 12px;
-    }
+   .play-pause-button{
+       font-size: 0.8em;
+       padding: 6px 12px;
+        margin: 0 6px;
   }
+    .nav-button{
+        font-size: 0.9em;
+        padding: 6px 10px;
+        margin: 0 6px;
+  }
+}
