@@ -42,7 +42,7 @@ function updateText(direction) {
 
   function resetTimer() {
     clearInterval(timerInterval);
-    timerInterval = setInterval(() => updateText("next"), 30000);
+    startTimer();
   }
 
   function togglePlayPause() {
