@@ -40,6 +40,11 @@ function updateText(direction) {
       isPlaying = false;
   }
 
+  function resetTimer() {
+    clearInterval(timerInterval);
+    timerInterval = setInterval(() => updateText("next"), 30000);
+  }
+
   function togglePlayPause() {
       if (isPlaying) {
           stopTimer();
@@ -69,15 +74,29 @@ function updateText(direction) {
 
 
    prevButton.addEventListener('click', () => {
-      // stopTimer();
+    resetTimer();
       updateText('prev');
   });
 
   nextButton.addEventListener('click', () => {
-      // stopTimer();
+    resetTimer();
       updateText('next');
   });
   playPauseButton.addEventListener('click', togglePlayPause);
+
+  document.addEventListener('keydown', (event) => {
+    if (event.code === 'ArrowLeft') {
+        resetTimer();
+        updateText('prev');
+    } else if (event.code === 'ArrowRight') {
+        resetTimer();
+       updateText('next');
+    }
+    else if (event.code === 'Space') {
+        togglePlayPause();
+    }
+});
+
 
   loadTextsFromJSON();
 });
