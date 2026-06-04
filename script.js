@@ -28,11 +28,11 @@ function updateText(direction) {
 }
 
 
-  function startTimer() {
-      timerInterval = setInterval(() => updateText("next"), 30000);
-      playPauseButton.textContent = "Pause";
-      isPlaying = true;
-  }
+function startTimer() {
+    timerInterval = setInterval(() => updateText("next"), 30000);
+    playPauseButton.textContent = "Pause";
+    isPlaying = true;
+}
 
   function stopTimer() {
       clearInterval(timerInterval);
@@ -49,7 +49,8 @@ function updateText(direction) {
       if (isPlaying) {
           stopTimer();
       } else {
-          startTimer();
+        updateText('next');  
+        startTimer();
       }
   }
 
@@ -93,6 +94,7 @@ function updateText(direction) {
        updateText('next');
     }
     else if (event.code === 'Space') {
+        event.preventDefault();
         togglePlayPause();
     }
 });
